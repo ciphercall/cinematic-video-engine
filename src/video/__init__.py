@@ -1,0 +1,1 @@
+"""Cinematic Video Generation Module — pluggable video gen clients."""

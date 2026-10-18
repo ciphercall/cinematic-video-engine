@@ -1,0 +1,1 @@
+"""Audio Generation Module — TTS synthesis and subtitle generation."""

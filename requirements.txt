@@ -1,0 +1,15 @@
+# Core
+python-dotenv>=1.0
+
+# TTS
+edge-tts>=6.1
+
+# LLM (optional — only needed for openai/anthropic/ollama providers)
+openai>=1.0
+anthropic>=0.30
+
+# Video gen (optional — only needed for cloud providers)
+httpx>=0.27
+
+# Utilities
+rich>=13.0

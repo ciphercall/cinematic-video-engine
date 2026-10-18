@@ -1,0 +1,1 @@
+"""Cinematic Video Engine — convert text documents into cinema-quality 16:9 videos."""

@@ -1,0 +1,1 @@
+"""Pipeline orchestration — narrative video generation workflow."""

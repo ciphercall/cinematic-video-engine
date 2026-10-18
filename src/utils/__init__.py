@@ -1,0 +1,1 @@
+"""Shared utilities — FFmpeg wrapper, logging, file management."""

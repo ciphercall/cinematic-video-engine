@@ -1,0 +1,1 @@
+"""Core Video Assembly Engine — FFmpeg stitching, audio overlay, subtitle burning."""

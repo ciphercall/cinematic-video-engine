@@ -1,0 +1,1 @@
+"""Publishing module slot — future YouTube/publishing integration point."""
