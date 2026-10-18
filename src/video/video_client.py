@@ -18,6 +18,12 @@ def create_video_provider(provider_name: str, config: Config) -> VideoGenProvide
     if provider_name == "mock":
         from src.video.mock_provider import MockVideoProvider
         return MockVideoProvider(config)
+    elif provider_name == "stock":
+        from src.video.stock_provider import StockVideoProvider
+        return StockVideoProvider(config)
+    elif provider_name == "docker":
+        from src.video.docker_provider import DockerVideoProvider
+        return DockerVideoProvider(config)
     elif provider_name == "wan":
         from src.video.wan_provider import WanProvider
         return WanProvider(config)

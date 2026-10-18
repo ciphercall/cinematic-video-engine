@@ -27,7 +27,8 @@ class Config:
     agnes_base_url: str = "https://api.agnes.ai/v1"
 
     # Video gen
-    video_provider: str = "mock"  # mock | wan | hunyuan | ltx
+    video_provider: str = "mock"  # mock | stock | docker | wan | hunyuan | ltx
+    docker_video_url: str = "http://localhost:8188"
 
     # TTS
     edge_tts_voice: str = "en-US-GuyNeural"
@@ -74,6 +75,7 @@ def load_config(env_file: str = ".env") -> Config:
         ollama_model=os.getenv("OLLAMA_MODEL", "llama3.2"),
         agnes_base_url=os.getenv("AGNES_BASE_URL", "https://api.agnes.ai/v1"),
         video_provider=os.getenv("VIDEO_PROVIDER", "mock"),
+        docker_video_url=os.getenv("DOCKER_VIDEO_URL", "http://localhost:8188"),
         edge_tts_voice=os.getenv("EDGE_TTS_VOICE", "en-US-GuyNeural"),
         kokoro_model_path=os.getenv("KOKORO_MODEL_PATH", ""),
         hf_api_token=os.getenv("HF_API_TOKEN", ""),

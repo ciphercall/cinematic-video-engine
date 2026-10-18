@@ -22,7 +22,7 @@ def build_parser() -> argparse.ArgumentParser:
     gen.add_argument("input", type=Path, help="Input text document path")
     gen.add_argument("-o", "--output", type=Path, default=Path("output"), help="Output directory")
     gen.add_argument("--tts", choices=["edge", "kokoro"], default="edge", help="TTS provider")
-    gen.add_argument("--video", choices=["mock", "wan", "hunyuan", "ltx"], default=None, help="Video gen provider (default: from .env)")
+    gen.add_argument("--video", choices=["mock", "stock", "docker", "wan", "hunyuan", "ltx"], default=None, help="Video gen provider (default: from .env)")
     gen.add_argument("--language", default="en", help="Language code (e.g. en, bn, es)")
     gen.add_argument("--max-scenes", type=int, default=None, help="Max number of scenes")
     gen.add_argument("--subtitles", action="store_true", default=True, help="Burn word-by-word subtitles")
