@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  video-gen:
+    build:
+      context: ./video-gen
+      dockerfile: Dockerfile
+    container_name: cinema-video-gen
+    ports:
+      - "8188:8188"
+    volumes:
+      - model_cache:/app/models
+      - video_output:/app/output
+    environment:
+      - MODEL_ID=THUDM/CogVideoX-2b
+      - DEVICE=cpu
+      - TORCH_DTYPE=float32
+      - HF_HOME=/app/models
+    deploy:
+      resources:
+        limits:
+          memory: 14G
+        reservations:
+          memory: 8G
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8188/health')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 300s
+      retries: 3
+
+volumes:
+  model_cache:
+  video_output:
