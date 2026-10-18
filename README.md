@@ -68,10 +68,34 @@ python -m src.main tts-smoke --locale en-US --text "Hello world"
 
 ## Upgrading to Real Video Generation
 
+### Option A: Free Cloud API (Hugging Face)
 1. Get a free Hugging Face token: https://huggingface.co/settings/tokens
 2. Set `HF_API_TOKEN=hf_...` in `.env`
 3. Set `VIDEO_PROVIDER=wan` in `.env` (or pass `--video wan`)
 4. Run: `python -m src.main generate input/sample.txt -o output/ --video wan`
+
+### Option B: Local Docker (Completely Free, No API Keys)
+Requires Docker Desktop and 12GB+ RAM. Runs CogVideoX-2B on CPU.
+
+1. Start the Docker container:
+   ```bash
+   docker compose -f docker/docker-compose.yml up -d
+   ```
+   (First run downloads ~5GB model weights — takes a few minutes)
+
+2. Wait for health check:
+   ```bash
+   curl http://localhost:8188/health
+   ```
+
+3. Set `VIDEO_PROVIDER=docker` in `.env` (or pass `--video docker`)
+
+4. Run:
+   ```bash
+   python -m src.main generate input/sample.txt -o output/ --video docker
+   ```
+
+**Note**: CPU inference is slow (~5-10 min per 6s clip). For faster generation, use Option A.
 
 ## Upgrading to LLM Scene Parsing
 
