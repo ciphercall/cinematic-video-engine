@@ -17,6 +17,8 @@ def setup_logger(level: str = "INFO") -> logging.Logger:
             datefmt="%H:%M:%S",
         )
         handler.setFormatter(formatter)
+        # Handle unicode on Windows console
+        handler.stream = open(sys.stdout.fileno(), mode='w', encoding='utf-8', errors='replace', closefd=False)
         logger.addHandler(handler)
 
     return logger
