@@ -1,4 +1,5 @@
-FROM python:3.11-slim
+# Use pre-built PyTorch image (already has torch installed, saves ~779MB download)
+FROM pytorch/pytorch:2.3.1-cpu
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,15 +10,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set working directory
 WORKDIR /app
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install remaining Python dependencies
+RUN pip install --no-cache-dir \
+    diffusers==0.30.0 \
+    transformers==4.44.0 \
+    accelerate==0.33.0 \
+    fastapi==0.112.0 \
+    uvicorn==0.30.0 \
+    imageio==2.34.0 \
+    imageio-ffmpeg==0.5.1 \
+    safetensors==0.4.3 \
+    sentencepiece==0.2.0 \
+    protobuf==4.25.3 \
+    huggingface_hub
 
 # Copy application code
 COPY app.py download_model.py ./
-
-# Pre-download model weights (optional, can be done at runtime)
-# RUN python download_model.py
 
 # Expose port
 EXPOSE 8188
